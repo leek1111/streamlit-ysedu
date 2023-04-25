@@ -4,6 +4,9 @@ import pandas as pd
 from utils import p_lans
 from PIL import Image
 
+# Data VIZ
+import plotly.express as px
+import matplotlib.pyplot as plt
 def main():
     st.title("Hello World")
 
@@ -97,10 +100,24 @@ def main():
         video_file =rb.read()
         st.video(video_file, start_time=1)
 
-    # 비디오 출력
+    # 오디오 출력
     with open('data/song.mp3', 'rb') as rb:
         audio_file = rb.read()
         st.audio(audio_file, format="audio/mp3")
+
+    col1, col2, col3= st.columns([0.3, 0.4, 0.4],gap='large')
+    with col1:
+        iris=pd.read_csv('data/iris.csv')
+    with col2:
+        fig = px.scatter(data_frame=iris,
+                         x='sepal_length',
+                         y='sepal_width')
+        st.plotly_chart(fig)
+    with col3:
+        fig2, ax=plt.subplots()
+        ax.scatter(x=iris['sepal_length'], y=iris['sepal_length'])
+        st.pyplot(fig2)
+
 
 
 if __name__ == '__main__':
