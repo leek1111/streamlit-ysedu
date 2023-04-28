@@ -4,9 +4,10 @@ from utils import html_temp
 from utils import dec_temp
 from eda_app import run_eda_app
 from ml_app import run_ml_app
+from stat_app import run_stat_app
 def main():
     st.markdown(html_temp, unsafe_allow_html=True)
-    menu = ['HOME', 'EDA', 'ML', 'About']
+    menu = ['HOME', 'EDA', 'ML', 'STAT','About']
     choice = st.sidebar.selectbox("Menu", menu)
     if choice == 'HOME':
         st.subheader('HOME')
@@ -15,6 +16,8 @@ def main():
         run_eda_app()
     elif choice == 'ML':
         run_ml_app()
+    elif choice == 'STAT':
+        run_stat_app()
     else:
         st.subheader('About')
 if __name__ == "__main__":
